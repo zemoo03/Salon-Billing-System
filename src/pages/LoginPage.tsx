@@ -35,7 +35,7 @@ export function LoginPage() {
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, background: "var(--brand-grad, #f97316)", color: "white", textAlign: "center", padding: "0.6rem", fontWeight: "600", zIndex: 9999, fontSize: "0.9rem", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" }}>
         <span style={{ fontSize: "1.1rem" }}>📱</span>
         <span>Get the fully responsive mobile app for your salon!</span>
-        <button className="btn btn-sm" style={{ background: "white", color: "#ea580c", whiteSpace: "nowrap" }} onClick={() => { alert('Downloading EVES Spa & Salon APK...'); }}>Download APK</button>
+        <a href="/eves-salon-app.apk" download className="btn btn-sm" style={{ background: "white", color: "#ea580c", whiteSpace: "nowrap", textDecoration: "none" }}>Download APK</a>
       </div>
       <div className="login-page">
         {/* Background orbs */}
