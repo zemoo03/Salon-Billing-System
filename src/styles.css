@@ -677,8 +677,9 @@ body.dark-mode {
 
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 1024px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 768px) {
@@ -688,11 +689,11 @@ body.dark-mode {
   .main { margin-left: 0; }
   .content { padding: 1rem; }
   .topbar { padding: 0 1rem; }
-  .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .grid-2 { grid-template-columns: 1fr; }
-  .login-right { width: 100%; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .login-right { width: 100%; padding: 2rem !important; }
   .login-left  { display: none; }
-  .login-page  { justify-content: center; }
-  .col-span-2, .col-span-3 { grid-column: span 1; }
-  .form-row { grid-template-columns: 1fr; }
+  .login-page  { justify-content: center; align-items: center; }
+  .col-span-2, .col-span-3 { grid-column: span 1 !important; }
+  .form-row { grid-template-columns: 1fr !important; }
 }
