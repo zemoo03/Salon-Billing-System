@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
@@ -11,26 +11,6 @@ export function LoginPage() {
   const [password, setPassword] = useState("admin123");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-
-  useEffect(() => {
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    });
-  }, []);
-
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        setDeferredPrompt(null);
-      }
-    } else {
-      alert("App installation is either not supported, already installed, or not fully cached yet.\n\nOpen this page in Chrome or Safari on your phone, tap the Share/Menu button, and select 'Add to Home Screen'.");
-    }
-  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -50,14 +30,7 @@ export function LoginPage() {
   const quickLogin = (e: string, p: string) => { setEmail(e); setPassword(p); };
 
   return (
-    <>
-      {/* Top Banner for Mobile APK Download */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, background: "var(--brand-grad, #f97316)", color: "white", textAlign: "center", padding: "0.6rem", fontWeight: "600", zIndex: 9999, fontSize: "0.9rem", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" }}>
-        <span style={{ fontSize: "1.1rem" }}>📱</span>
-        <span>Get the fully responsive mobile app for your salon!</span>
-        <button onClick={handleInstallClick} className="btn btn-sm" style={{ background: "white", color: "#ea580c", whiteSpace: "nowrap", border: "none", cursor: "pointer" }}>Install App</button>
-      </div>
-      <div className="login-page">
+    <div className="login-page">
         {/* Background orbs */}
       <div className="login-bg-orb" style={{ width: 600, height: 600, background: "#f97316", top: -200, left: -200 }} />
       <div className="login-bg-orb" style={{ width: 400, height: 400, background: "#fb7185", bottom: -100, right: 200 }} />
@@ -166,6 +139,5 @@ export function LoginPage() {
         </div>
       </div>
     </div>
-    </>
   );
 }
