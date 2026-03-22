@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import type { UserRole } from "../store/dataStore";
 
 type AuthUser = { id: string; email: string; name: string; staffId?: string; };

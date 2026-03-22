@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip,
-  LineChart, Line, PieChart, Pie, Cell, Legend,
+  PieChart, Pie, Cell, Legend,
 } from "recharts";
 import {
   getBills, getStaff, getServices,
@@ -79,7 +79,7 @@ export function AdminDashboard() {
                 <BarChart data={weeklyData} barCategoryGap="35%">
                   <XAxis dataKey="day" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={v => `₹${(v/1000).toFixed(0)}k`} />
-                  <Tooltip formatter={(v: number) => [`₹${v.toLocaleString("en-IN")}`, "Revenue"]} />
+                  <Tooltip formatter={(v: any) => [`₹${v.toLocaleString("en-IN")}`, "Revenue"]} />
                   <Bar dataKey="revenue" fill="#f97316" radius={[6,6,0,0]} />
                 </BarChart>
               </ResponsiveContainer>
@@ -92,7 +92,7 @@ export function AdminDashboard() {
                 <BarChart data={perf.slice(0,6)} barCategoryGap="35%">
                   <XAxis dataKey="staffName" tick={{ fontSize: 11 }} tickFormatter={n => n.split(" ")[0]} />
                   <YAxis tick={{ fontSize: 12 }} tickFormatter={v => `₹${(v/1000).toFixed(0)}k`} />
-                  <Tooltip formatter={(v: number) => [`₹${v.toLocaleString("en-IN")}`, "Revenue"]} />
+                  <Tooltip formatter={(v: any) => [`₹${v.toLocaleString("en-IN")}`, "Revenue"]} />
                   <Bar dataKey="revenue" radius={[6,6,0,0]}>
                     {perf.slice(0,6).map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                   </Bar>
@@ -126,7 +126,7 @@ export function AdminDashboard() {
                   {svcStats.slice(0,5).map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                 </Pie>
                 <Legend iconSize={8} formatter={(value) => <span style={{ fontSize: "0.73rem" }}>{value}</span>} />
-                <Tooltip formatter={(v: number) => `₹${v.toLocaleString("en-IN")}`} />
+                <Tooltip formatter={(v: any) => `₹${v.toLocaleString("en-IN")}`} />
               </PieChart>
             </ResponsiveContainer>
           </div>

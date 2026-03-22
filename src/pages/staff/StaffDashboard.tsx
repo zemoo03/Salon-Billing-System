@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useAuth } from "../../auth/AuthContext";
 import { getBills, getStaff, getStaffPerformance } from "../../store/dataStore";
-import { ResponsiveContainer, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
 export function StaffDashboard() {
   const { user } = useAuth();
@@ -53,7 +53,6 @@ export function StaffDashboard() {
     return <div className="alert alert-error">Error: Staff profile not linked to this account. Contact your admin.</div>;
   }
 
-  const todayStr = new Date().toDateString();
   const todayRev = chartData.find(c => c.day === new Date().toLocaleDateString("en-IN", { month: "short", day: "numeric" }))?.revenue ?? 0;
   const todayEarn = chartData.find(c => c.day === new Date().toLocaleDateString("en-IN", { month: "short", day: "numeric" }))?.earnings ?? 0;
 
@@ -101,7 +100,7 @@ export function StaffDashboard() {
               <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <XAxis dataKey="day" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `₹${v}`} />
-                <Tooltip formatter={(value: number, name: string) => [`₹${value.toLocaleString("en-IN")}`, name === "earnings" ? "Commission Earned" : "Revenue Generated"]} />
+                <Tooltip formatter={(value: any, name: any) => [`₹${value.toLocaleString("en-IN")}`, name === "earnings" ? "Commission Earned" : "Revenue Generated"]} />
                 <Line type="step" dataKey="revenue"  stroke="#94a3b8" strokeWidth={2} name="revenue" dot={false} />
                 <Line type="monotone" dataKey="earnings" stroke="#10b981" strokeWidth={3} name="earnings" dot={{ r: 3, fill: "#10b981" }} />
               </LineChart>

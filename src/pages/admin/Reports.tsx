@@ -55,7 +55,7 @@ export function Reports() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: "#64748b", fontSize: 12 }} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fill: "#64748b", fontSize: 12 }} tickFormatter={v => `₹${(v/1000).toFixed(0)}k`} />
-                <Tooltip formatter={(value: number) => `₹${value.toLocaleString("en-IN")}`} />
+                <Tooltip formatter={(value: any) => `₹${value.toLocaleString("en-IN")}`} />
                 <Line type="monotone" dataKey="revenue" stroke="var(--brand-1)" strokeWidth={3} dot={{ strokeWidth: 2, r: 4, fill: "var(--surface)" }} activeDot={{ r: 6, fill: "var(--brand-1)" }} />
               </LineChart>
             </ResponsiveContainer>
@@ -82,7 +82,7 @@ export function Reports() {
                   <Pie data={staffPerf} dataKey="commission" nameKey="staffName" cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={2}>
                     {staffPerf.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                   </Pie>
-                  <Tooltip formatter={(v: number) => `₹${Math.round(v).toLocaleString("en-IN")}`} />
+                  <Tooltip formatter={(v: any) => `₹${Math.round(v).toLocaleString("en-IN")}`} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="text-center text-xs text-muted">Incentives Share by Staff</div>
@@ -138,7 +138,7 @@ export function Reports() {
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" />
                 <XAxis type="number" hide />
                 <YAxis dataKey="serviceName" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: "#475569" }} width={80} />
-                <Tooltip formatter={(v: number) => `₹${v.toLocaleString("en-IN")}`} />
+                <Tooltip formatter={(v: any) => `₹${v.toLocaleString("en-IN")}`} />
                 <Bar dataKey="revenue" fill="#8b5cf6" radius={[0,4,4,0]} barSize={24} />
               </BarChart>
             </ResponsiveContainer>
