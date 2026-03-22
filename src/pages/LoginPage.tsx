@@ -30,8 +30,15 @@ export function LoginPage() {
   const quickLogin = (e: string, p: string) => { setEmail(e); setPassword(p); };
 
   return (
-    <div className="login-page">
-      {/* Background orbs */}
+    <>
+      {/* Top Banner for Mobile APK Download */}
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, background: "var(--brand-grad, #f97316)", color: "white", textAlign: "center", padding: "0.6rem", fontWeight: "600", zIndex: 9999, fontSize: "0.9rem", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" }}>
+        <span style={{ fontSize: "1.1rem" }}>📱</span>
+        <span>Get the fully responsive mobile app for your salon!</span>
+        <button className="btn btn-sm" style={{ background: "white", color: "#ea580c", whiteSpace: "nowrap" }} onClick={() => { alert('Downloading EVES Spa & Salon APK...'); }}>Download APK</button>
+      </div>
+      <div className="login-page">
+        {/* Background orbs */}
       <div className="login-bg-orb" style={{ width: 600, height: 600, background: "#f97316", top: -200, left: -200 }} />
       <div className="login-bg-orb" style={{ width: 400, height: 400, background: "#fb7185", bottom: -100, right: 200 }} />
 
@@ -139,5 +146,6 @@ export function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
