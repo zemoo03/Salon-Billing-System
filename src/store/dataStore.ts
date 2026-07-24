@@ -47,6 +47,23 @@ export interface Bill {
   notes: string;
 }
 
+export interface Appointment {
+  id: string;
+  clientName: string;
+  clientPhone: string;
+  serviceId: string;
+  serviceName: string;
+  staffId: string;
+  staffName: string;
+  date: string; // YYYY-MM-DD
+  time: string; // HH:MM
+  durationMins: number;
+  price: number;
+  paymentMethod: "Cash" | "Card" | "Online" | "Voucher";
+  status: "scheduled" | "completed" | "cancelled";
+}
+
+
 // ─── Seed data ──────────────────────────────────────────────
 
 const SEED_STAFF: StaffMember[] = [
@@ -141,6 +158,69 @@ const SEED_BILLS: Bill[] = [
   },
 ];
 
+const SEED_APPOINTMENTS: Appointment[] = [
+  {
+    id: "ap1",
+    clientName: "Neha Sharma",
+    clientPhone: "9876543210",
+    serviceId: "sv14",
+    serviceName: "Hydra Facial",
+    staffId: "s1",
+    staffName: "Kriti Sharma",
+    date: "2026-07-23",
+    time: "09:00",
+    durationMins: 90,
+    price: 3500,
+    paymentMethod: "Online",
+    status: "completed"
+  },
+  {
+    id: "ap2",
+    clientName: "Priya Patel",
+    clientPhone: "9876543211",
+    serviceId: "sv3",
+    serviceName: "Hair Spa",
+    staffId: "s2",
+    staffName: "Pooja Mehta",
+    date: "2026-07-23",
+    time: "11:00",
+    durationMins: 60,
+    price: 800,
+    paymentMethod: "Cash",
+    status: "completed"
+  },
+  {
+    id: "ap3",
+    clientName: "Sunita Rao",
+    clientPhone: "9876543212",
+    serviceId: "sv7",
+    serviceName: "Global Hair Colours",
+    staffId: "s3",
+    staffName: "Riya Singh",
+    date: "2026-07-23",
+    time: "13:00",
+    durationMins: 120,
+    price: 2000,
+    paymentMethod: "Cash",
+    status: "scheduled"
+  },
+  {
+    id: "ap4",
+    clientName: "Rohan Malhotra",
+    clientPhone: "9876543213",
+    serviceId: "sv1",
+    serviceName: "Hair Cutting (Women)",
+    staffId: "s4",
+    staffName: "Anjali Gupta",
+    date: "2026-07-23",
+    time: "16:00",
+    durationMins: 45,
+    price: 450,
+    paymentMethod: "Online",
+    status: "scheduled"
+  }
+];
+
 // ─── Storage helpers ──────────────────────────────────────────
 
 function load<T>(key: string, seed: T[]): T[] {
@@ -159,6 +239,7 @@ function save<T>(key: string, data: T[]): void {
 export const STAFF_KEY   = "salonpro_staff";
 export const SERVICE_KEY = "salonpro_services";
 export const BILL_KEY    = "salonpro_bills";
+export const APPOINTMENT_KEY = "salonpro_appointments";
 
 export function getStaff(): StaffMember[] { return load<StaffMember>(STAFF_KEY, SEED_STAFF); }
 export function saveStaff(data: StaffMember[]): void { save(STAFF_KEY, data); }
@@ -168,6 +249,10 @@ export function saveServices(data: Service[]): void { save(SERVICE_KEY, data); }
 
 export function getBills(): Bill[] { return load<Bill>(BILL_KEY, SEED_BILLS); }
 export function saveBills(data: Bill[]): void { save(BILL_KEY, data); }
+
+export function getAppointments(): Appointment[] { return load<Appointment>(APPOINTMENT_KEY, SEED_APPOINTMENTS); }
+export function saveAppointments(data: Appointment[]): void { save(APPOINTMENT_KEY, data); }
+
 
 export function nextBillNumber(): string {
   const bills = getBills();
@@ -259,3 +344,43 @@ export function getMonthlyRevenue(bills: Bill[]): DailyRevenue[] {
   }
   return result;
 }
+
+export interface Client {
+  id: string;
+  firstName: string;
+  lastName: string;
+  mobileNumber: string;
+  email: string;
+  gstNumber: string;
+  gender: string;
+  birthday: string;
+  anniversary: string;
+  address: string;
+  smsConsent: boolean;
+  whatsappConsent: boolean;
+  referral: boolean;
+  notes: string;
+  visits: number;
+  salesAmount: number;
+  lastVisit: string;
+  totalCashback: number;
+  redeemableCashback: number;
+}
+
+const SEED_CLIENTS: Client[] = [
+  { id: "c1", firstName: "Madhura", lastName: "Lokade 2514", mobileNumber: "9321125972", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c2", firstName: "Heena", lastName: "Thakkar 2513", mobileNumber: "9867414387", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c3", firstName: "Jasmi", lastName: "Doshi 2512", mobileNumber: "9520859254", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c4", firstName: "Heema", lastName: "Shah 2510", mobileNumber: "9820230428", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c5", firstName: "Bhakti", lastName: "Vora 2509", mobileNumber: "9820765532", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c6", firstName: "Monika", lastName: "Shah 2508", mobileNumber: "8828049301", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c7", firstName: "Akruti", lastName: "Mehta 2507", mobileNumber: "9868813853", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c8", firstName: "Nina", lastName: "Thakkar 2506", mobileNumber: "9869200879", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c9", firstName: "Sheela", lastName: "Kothari 2505", mobileNumber: "8422952828", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+  { id: "c10", firstName: "Karishma", lastName: "K 2504", mobileNumber: "8779001962", email: "N/A", gstNumber: "N/A", gender: "Female", birthday: "N/A", anniversary: "N/A", address: "N/A", smsConsent: true, whatsappConsent: true, referral: false, notes: "N/A", visits: 1, salesAmount: 500, lastVisit: "22-Jul-2026", totalCashback: 0, redeemableCashback: 0 },
+];
+
+export const CLIENT_KEY = "salonpro_clients";
+export function getClients(): Client[] { return load<Client>(CLIENT_KEY, SEED_CLIENTS); }
+export function saveClients(data: Client[]): void { save(CLIENT_KEY, data); }
+

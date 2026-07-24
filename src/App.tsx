@@ -11,6 +11,12 @@ import { BillsList } from "./pages/admin/BillsList";
 import { BillDetail } from "./pages/admin/BillDetail";
 import { Reports } from "./pages/admin/Reports";
 import { Layout } from "./components/layout/Layout";
+import { Clients } from "./pages/admin/Clients";
+import { Inventory } from "./pages/admin/Inventory";
+import { Members } from "./pages/admin/Members";
+import { Loyalty } from "./pages/admin/Loyalty";
+import { Templates } from "./pages/admin/Templates";
+import { Settings } from "./pages/admin/Settings";
 
 export type UserRole = "admin" | "owner" | "staff";
 
@@ -89,6 +95,54 @@ export function App() {
             element={
               <ProtectedRoute allowedRoles={["admin", "owner"]}>
                 <Reports />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="clients"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner", "staff"]}>
+                <Clients />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="inventory"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner"]}>
+                <Inventory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="members"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner"]}>
+                <Members />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="loyalty"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner"]}>
+                <Loyalty />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="templates"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner"]}>
+                <Templates />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="settings"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "owner"]}>
+                <Settings />
               </ProtectedRoute>
             }
           />
